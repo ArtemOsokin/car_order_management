@@ -1,0 +1,591 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/Osokin.Art/Cars/1.0.0
+
+info:
+  description: This is a Car Order Managment API. Test Case
+  version: "1.0.0"
+  title: Car Order Managment API
+tags:
+  - name: 'colors'
+    description: 'CRUD car colors'
+  - name: 'brands'
+    description: 'CRUD car brand colors'
+  - name: 'models'
+    description: 'CRUD car models colors'
+  - name: 'orders'
+    description: 'CRUD car orders colors'
+
+paths:
+  /colors/create:
+    post:
+      tags:
+        - 'colors'
+      summary: 'Создать цвет'
+      description: |
+        Создание нового цвета автомобиля
+      requestBody:
+        content:
+          apapplication/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: 'Green'
+      responses:
+        '201':
+          description: 'Ok'
+        '400':
+          description: 'Bad input parameter'
+          
+  /colors/all:
+    get:
+      tags:
+        - 'colors'
+      summary: 'Список цветов автомобилей'
+      description: 'Получаем список возможных цветов автомобилей'
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Color'
+  /colors/detail/{id}:
+    get:
+      tags:
+        - 'colors'
+      summary: 'Цвет получить'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: 'f70a5b72-c5ed-4070-8031-efcc46083ab0'
+          required: true
+      description: 'Получаем информацию по цвету'
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Color'
+        '400':
+          description: 'Color not found'
+    put:
+      tags:
+        - 'colors'
+      summary: 'Цвет обновить'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: 'f70a5b72-c5ed-4070-8031-efcc46083ab0'
+          required: true
+      description: 'Обновляем информацию по цвету'
+      responses:
+        '200':
+          description: 'Ok'
+        '400':
+          description: 'Color not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Color'
+    delete:
+      tags:
+        - 'colors'
+      summary: 'Цвет удалить'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: 'f70a5b72-c5ed-4070-8031-efcc46083ab0'
+          required: true
+      description: 'Удалить цвет'
+      responses:
+        '200':
+          description: 'Ok'
+        '400':
+          description: 'Color not found'
+  /colors/sum:
+    get:
+      tags:
+        - 'colors'
+      summary: 'Количество проданнных авто по цветам'
+      description: 'Получаем список проданных автомобилей отсортированных по цветам'
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: 'Green'
+                    amount:
+                      type: integer
+                      example: 7
+
+  /brands/create:
+    post:
+      tags:
+        - 'brands'
+      summary: 'Создать марку авто'
+      description: |
+        Создание новой марки автомобиля
+      requestBody:
+        content:
+          apapplication/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: 'BMW'
+      responses:
+        '201':
+          description: 'Ok'
+        '400':
+          description: 'Bad input parameter'
+  /brands/all:
+    get:
+      tags:
+        - 'brands'
+      summary: 'Список марок автомобилей'
+      description: 'Получаем список возможных марок автомобилей'
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarBrand'
+                  
+  /brands/detail/{id}:
+    get:
+      tags:
+        - 'brands'
+      summary: 'Марка авто получить'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: 'f70a5b72-c5ed-4070-8031-efcc46083ab0'
+          required: true
+      description: 'Получаем информацию по марке авто'
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarBrand'
+        '400':
+          description: 'Car brand not found'
+    put:
+      tags:
+        - 'brands'
+      summary: 'Марку авто обновить'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: 'f70a5b72-c5ed-4070-8031-efcc46083ab0'
+          required: true
+      description: 'Обновляем информацию по марке авто'
+      responses:
+        '200':
+          description: 'Ok'
+        '400':
+          description: 'Car brand not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarBrand'
+    delete:
+      tags:
+        - 'brands'
+      summary: 'Марку авто удалить'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: 'f70a5b72-c5ed-4070-8031-efcc46083ab0'
+          required: true
+      description: 'Удалить марку авто'
+      responses:
+        '200':
+          description: 'Ok'
+        '400':
+          description: 'Car brand not found'
+          
+
+
+  /models/create:
+    post:
+      tags:
+        - 'models'
+      summary: 'Создать модель авто'
+      description: |
+        Создание новой модели автомобиля
+      requestBody:
+        content:
+          apapplication/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: 'M5'
+                car_brand:
+                  type: string
+                  format: uuid
+                  example: '8b2574ff-a5bb-4898-bd12-dbd616511eec'
+      responses:
+        '201':
+          description: 'Ok'
+        '400':
+          description: 'Bad input parameter'
+          
+  /models/all:
+    get:
+      tags:
+        - 'models'
+      summary: 'Список модели автомобилей'
+      description: 'Получаем список возможных модели автомобилей'
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarModel'
+                  
+  /models/detail/{id}:
+    get:
+      tags:
+        - 'models'
+      summary: 'Модель авто получить'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: 'f70a5b72-c5ed-4070-8031-efcc46083ab0'
+          required: true
+      description: 'Получаем информацию по модели авто'
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarModel'
+        '400':
+          description: 'Car brand not found'
+    put:
+      tags:
+        - 'models'
+      summary: 'Модель авто обновить'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: 'f70a5b72-c5ed-4070-8031-efcc46083ab0'
+          required: true
+      description: 'Обновляем информацию по модели авто'
+      responses:
+        '200':
+          description: 'Ok'
+        '400':
+          description: 'Car brand not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarBrand'
+    delete:
+      tags:
+        - 'models'
+      summary: 'Модель авто удалить'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: 'f70a5b72-c5ed-4070-8031-efcc46083ab0'
+          required: true
+      description: 'Удалить Модель авто'
+      responses:
+        '200':
+          description: 'Ok'
+        '400':
+          description: 'Car brand not found'
+
+
+  /orders/create:
+    post:
+      tags:
+        - 'orders'
+      summary: 'Создать заказ'
+      description: |
+        Создание нового заказа автомобиля
+      requestBody:
+        content:
+          apapplication/json:
+            schema:
+              properties:
+                data_order:
+                  type: string
+                  format: datatime
+                  example: '2022-10-12T12:59:37.915358Z'
+                car_model:
+                  type: string
+                  format: uuid
+                  example: '8b2574ff-a5bb-4898-bd12-dbd616511eec'
+                color:
+                  type: string
+                  format: uuid
+                  example: '8b2574ff-a5bb-4898-bd12-dbd616511eec'
+                amount:
+                  type: integer
+                  example: 10
+      responses:
+        '201':
+          description: 'Ok'
+        '400':
+          description: 'Bad input parameter'
+          
+  /orders/all:
+    get:
+      tags:
+        - 'orders'
+      summary: 'Список заказов автомобилей'
+      description: 'Получаем список заказов автомобилей с пагинацией (10) фильтрацией и сортировкой по количеству'
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    data_order:
+                      type: string
+                      format: datetime
+                      example: '2022-10-12T16:24:00Z'
+                    color:
+                      type: string
+                      format: uuid
+                      example: 'f70a5b72-c5ed-4070-8031-efcc46083ab0'
+                    car_model:
+                      type: string
+                      format: uuid
+                      example: '8ced7a8c-aca9-4dd1-a147-17f577f03dd1'
+                    car_brand:
+                      type: string
+                      format: uuid
+                      example: '8ced7a8c-aca9-4dd1-a147-17f577f03dd1'
+                    amount:
+                      type: integer
+                      example: 7
+                  
+  /orders/detail/{id}:
+    get:
+      tags:
+        - 'orders'
+      summary: 'Заказ получить'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: 'f70a5b72-c5ed-4070-8031-efcc46083ab0'
+          required: true
+      description: 'Получаем информацию по заказу'
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: 'Car brand not found'
+    put:
+      tags:
+        - 'orders'
+      summary: 'Заказ обновить'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: 'f70a5b72-c5ed-4070-8031-efcc46083ab0'
+          required: true
+      description: 'Обновляем информацию по заказу авто'
+      responses:
+        '200':
+          description: 'Ok'
+        '400':
+          description: 'Car brand not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+    delete:
+      tags:
+        - 'orders'
+      summary: 'Заказ удалить'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: 'f70a5b72-c5ed-4070-8031-efcc46083ab0'
+          required: true
+      description: 'Удалить заказ'
+      responses:
+        '200':
+          description: 'Ok'
+        '400':
+          description: 'Car brand not found'
+          
+components:
+  schemas:
+    Color:
+      type: object
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: '8b2574ff-a5bb-4898-bd12-dbd616511eec'
+        name:
+          type: string
+          example: 'Green'
+        created_at:
+          type: string
+          format: datetime
+          example: '2022-10-12T12:59:37.915358Z'
+        updated_at:
+          type: string
+          format: datetime
+          example: '2022-10-12T12:59:37.915358Z'
+    CarBrand:
+      type: object
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: '8b2574ff-a5bb-4898-bd12-dbd616511eec'
+        name:
+          type: string
+          example: 'BMW'
+        created_at:
+          type: string
+          format: datetime
+          example: '2022-10-12T12:59:37.915358Z'
+        updated_at:
+          type: string
+          format: datetime
+          example: '2022-10-12T12:59:37.915358Z'
+    CarModel:
+      type: object
+      required:
+        - name
+        - car_brand
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: '8b2574ff-a5bb-4898-bd12-dbd616511eec'
+        name:
+          type: string
+          example: 'M5'
+        car_brand:
+          type: string
+          format: uuid
+          example: '3ddab934-1e53-41f0-bd4c-d8531ca4a101'
+        created_at:
+          type: string
+          format: datetime
+          example: '2022-10-12T12:59:37.915358Z'
+        updated_at:
+          type: string
+          format: datetime
+          example: '2022-10-12T12:59:37.915358Z'
+          
+    Order:
+      type: object
+      required:
+        - data_order
+        - color
+        - car_model
+        - amount
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: '8b2574ff-a5bb-4898-bd12-dbd616511eec'
+        data_order:
+          type: string
+          format: datetime
+          example: '2022-10-12T16:24:00Z'
+        color:
+          type: string
+          format: uuid
+          example: 'f70a5b72-c5ed-4070-8031-efcc46083ab0'
+        car_model:
+          type: string
+          format: uuid
+          example: '8ced7a8c-aca9-4dd1-a147-17f577f03dd1'
+        amount:
+          type: integer
+          example: 7
+        created_at:
+          type: string
+          format: datetime
+          example: '2022-10-12T12:59:37.915358Z'
+        updated_at:
+          type: string
+          format: datetime
+          example: '2022-10-12T12:59:37.915358Z'
