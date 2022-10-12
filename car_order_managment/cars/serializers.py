@@ -8,10 +8,26 @@ class ColorSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ColorSumSerializer(serializers.ModelSerializer):
+    color_amount = serializers.IntegerField()
+
+    class Meta:
+        model = Color
+        fields = ['name', 'color_amount']
+
+
 class CarBrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarBrand
         fields = '__all__'
+
+
+class CarBrandSumSerializer(serializers.ModelSerializer):
+    car_brand_amount = serializers.IntegerField()
+
+    class Meta:
+        model = Color
+        fields = ['name', 'car_brand_amount']
 
 
 class CarModelSerializer(serializers.ModelSerializer):
