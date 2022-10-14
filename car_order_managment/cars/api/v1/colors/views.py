@@ -1,7 +1,7 @@
-from rest_framework import generics
-from cars.serializers import ColorSerializer, ColorSumSerializer
 from cars.models import Color
+from cars.serializers import ColorSerializer, ColorSumSerializer
 from django.db.models import Sum
+from rest_framework import generics
 
 
 class ColorCreateView(generics.CreateAPIView):

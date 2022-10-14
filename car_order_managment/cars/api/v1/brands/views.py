@@ -1,7 +1,7 @@
-from rest_framework import generics
-from cars.serializers import CarBrandSerializer, CarBrandSumSerializer
 from cars.models import CarBrand
+from cars.serializers import CarBrandSerializer, CarBrandSumSerializer
 from django.db.models import Sum
+from rest_framework import generics
 
 
 class CarBrandCreateView(generics.CreateAPIView):

@@ -1,5 +1,5 @@
-from django.contrib import admin
 from cars.models import Color, CarBrand, CarModel, Order
+from django.contrib import admin
 
 
 class CarModelInline(admin.TabularInline):

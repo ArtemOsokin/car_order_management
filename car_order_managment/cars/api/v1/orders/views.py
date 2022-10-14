@@ -1,8 +1,8 @@
+from cars.models import Order
+from cars.serializers import OrderDetailSerializer, OrderListSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework import pagination
-from cars.serializers import OrderDetailSerializer, OrderListSerializer
-from cars.models import Order, CarBrand
 from rest_framework.filters import OrderingFilter
 
 

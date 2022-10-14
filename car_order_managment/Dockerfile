@@ -3,7 +3,7 @@ FROM python:3.9.6-alpine
 
 # set work directory
 RUN pip install pipenv
-WORKDIR /usr/src/cars/
+WORKDIR /usr/src/
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -16,5 +16,5 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt --no-cache-dir
 
 # copy project
-COPY . /usr/src/cars/
+COPY . /usr/src/
 CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]

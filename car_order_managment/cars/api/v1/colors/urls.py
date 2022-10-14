@@ -1,6 +1,5 @@
-from django.urls import path, include
 from cars.api.v1.colors.views import *
-
+from django.urls import path
 
 app_name = 'colors'
 urlpatterns = [

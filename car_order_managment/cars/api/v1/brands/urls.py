@@ -1,6 +1,5 @@
-from django.urls import path
 from cars.api.v1.brands.views import *
-
+from django.urls import path
 
 app_name = 'brands'
 urlpatterns = [

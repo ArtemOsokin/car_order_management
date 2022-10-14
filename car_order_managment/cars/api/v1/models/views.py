@@ -1,7 +1,6 @@
-import django_filters.rest_framework
-from rest_framework import generics
-from cars.serializers import CarModelSerializer
 from cars.models import CarModel
+from cars.serializers import CarModelSerializer
+from rest_framework import generics
 
 
 class CarModelCreateView(generics.CreateAPIView):
