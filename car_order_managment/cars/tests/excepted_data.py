@@ -134,6 +134,10 @@ test_data = {
     },
 
     "orders": {
-
-    }
+        'bad': {
+            '404': {
+                "detail": "Not found."
+            }
+        },
+    },
 }
