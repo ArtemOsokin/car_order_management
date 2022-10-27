@@ -51,6 +51,7 @@ class OrderListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = [
+            'id',
             'data_order',
             'color',
             'car_model',
